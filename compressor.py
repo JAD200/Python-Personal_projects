@@ -8,8 +8,10 @@ download_folder = "../../../../Downloads/"
 #   Folders for the files
 pictures_folder = "../../../../Pictures/"
 
+
 if __name__ == '__main__':
     try:
+        print('Buscando imágenes...\n'+ '-'* 20)
         for filename in os.listdir(download_folder):
             name, extension = os.path.splitext(download_folder + filename)
 
@@ -26,8 +28,6 @@ if __name__ == '__main__':
                     pictures_folder + 'compressed_' + filename).st_size
                 print(
                     f'{name}: {extension} | Tamaño reducido: {naturalsize(original_size)} a {naturalsize(compressed_size)}')
-            else:
-                print('\nNo se encontraron imágenes\n')
-                break
+        print('\nNo se encontraron mas imágenes\n')
     except ValueError:
         print(f'Se desconoce la extensión {extension}')
