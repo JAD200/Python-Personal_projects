@@ -43,6 +43,9 @@
 * [Python3.8](https://www.python.org/downloads/release/python-3813/)
 * [PIP](https://pypi.org/)
 	* [Pillow](https://bit.ly/3OWqUWC)
+  * [QRCODE](https://pypi.org/project/qrcode/)
+  * [PyQt5](https://pypi.org/project/PyQt5/)
+  * [opencv-python](https://pypi.org/project/opencv-python/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
