@@ -55,10 +55,10 @@
   sudo apt install python3
   ```
 
-* python3
+* pip
   ```sh
   python3 -m pip install --upgrade pip
-  python3 -m pip install --upgrade Pillow
+  pip install -r requirements.txt
   ```
 
 <!-- ROADMAP -->
@@ -67,6 +67,7 @@
 - Image compressor
 - Progress bar
 - Tests with dictionaries
+- QRCode generator
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
