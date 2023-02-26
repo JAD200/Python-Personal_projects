@@ -5,7 +5,7 @@ for game in games:
     tax = game * 0.75
     tax_price = game + tax
     games_with_taxes.append(tax_price)
-    print(f'Game {game:0.2f}\tTax price {tax_price:0.2f}')
+    print(f'Game:{game:0.2f}\tTax:{tax:0.2f}\tTax price:{tax_price:0.2f}')
 
 games_total = sum(games)
 final_price = sum(games_with_taxes)
