@@ -4,6 +4,9 @@
 ### Exclusive programs ###
 framing.py
 
+### Sensible ###
+sensible.*
+
 ### Images ###
 # JPEG
 *.jpg

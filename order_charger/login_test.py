@@ -3,38 +3,65 @@ import unittest
 #   selenium
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.options import Options as ChromeOptions
 from webdriver_manager.chrome import ChromeDriverManager
-#   find_element
+#   Find_element
 from selenium.webdriver.common.by import By
-#   Module to understand the test better #! Slows down the test result
-# from time import sleep
+#   Sensible data
+from sensible import *
+#   Expected conditions and explicit waits
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+#   Current date time selector
+from current_datetime_selector import current_date
+from time import sleep
+
 
 class LoginTest(unittest.TestCase):
 
     def setUp(self):
-        # Installs the chrome driver (log_level=0: Disables teh log.info for the console)
         service = ChromeService(
-            executable_path=ChromeDriverManager(log_level=0).install())
-        self.driver = webdriver.Chrome(service=service)
+            executable_path=ChromeDriverManager().install())
+        options = ChromeOptions()
+        self.driver = webdriver.Chrome(service=service, options=options)
         driver = self.driver
-        driver.implicitly_wait(30)
-        driver.minimize_window()
-        driver.get('https://www.swissmedical.com.ar/prestadores')
+        options.add_experimental_option(
+            'excludeSwitches', ['enable-automation'])
+        driver.implicitly_wait(6)
+        driver.maximize_window()
+        driver.get('https://bit.ly/3V2xSxz')
 
     def test_login(self):
         driver = self.driver
-
-        search_field = driver.find_element(By.XPATH, '//*[@id="app"]/nav/div/div[1]/div[2]/div/div[1]/form/div[1]/input')
-        search_field.clear()
-        search_field.send_keys('optilog62@gmail.com')
-        password_field = driver.find_element(By.XPATH, '//*[@id="app"]/nav/div/div[1]/div[2]/div/div[1]/form/div[2]/input')
+        # Log in
+        mail_field = driver.find_element(
+            By.NAME, "email")
+        mail_field.clear()
+        mail_field.send_keys(email_field_test)
+        password_field = driver.find_element(
+            By.NAME, "password")
         password_field.clear()
-        password_field.send_keys('')
+        password_field.send_keys(password_field_test)
+        password_field.submit()
+        driver.implicitly_wait(10)
+        # Select TRÁMITES CONECTIVIDAD
+        # print('TRÁMITES CONECTIVIDAD')
+        # connectivity_button = driver.find_element(
+        # By.LINK_TEXT, "//a[@title='TRÁMITES CONECTIVIDAD']")
+        # connectivity_button.click()
+        current_date(driver)
 
-    def test_connectivity_form(self):
-        driver = self.driver
+        # Attention place
+        driver.find_element(By.NAME, 'lugarDeAtencion').click()
+        driver.implicitly_wait(1)
+        driver.find_element(
+            By.XPATH, "//option[text()='25 DE MAYO 910']").click()
+        
+        affiliate_number = driver.find_element(
+            By.NAME, "validacionDelAfiliado")
+        affiliate_number.send_keys(affiliate_number_test)
+        driver.implicitly_wait(4)
 
-        driver.find_element(By.XPATH, "//a[@title='TRÁMITES CONECTIVIDAD']").click()
 
     def tearDown(self):
         self.driver.implicitly_wait(3)
