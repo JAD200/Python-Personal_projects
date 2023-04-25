@@ -16,7 +16,6 @@ from current_datetime_selector import current_date
 from medical_benefits_selector import medical_benefits
 #   Sensible data
 from sensible import *
-from time import sleep
 
 
 def click_next_button(driver, expected_xpath:str):
@@ -65,6 +64,7 @@ class LoginTest(unittest.TestCase):
         click_next_button(driver, "//button[normalize-space()='Siguiente']")
         click_next_button(driver, "//button[normalize-space()='Siguiente']")
 
+        medical_benefits(driver)
 
     def tearDown(self):
         self.driver.implicitly_wait(3)
