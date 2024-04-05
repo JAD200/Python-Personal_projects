@@ -6,6 +6,7 @@ framing.py
 
 ### Sensible ###
 sensible.*
+/sensible/*
 
 ### Images ###
 # JPEG
